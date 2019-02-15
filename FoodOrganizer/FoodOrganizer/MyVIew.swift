@@ -23,14 +23,14 @@ import UIKit
         setup()
     }
     
-    convenience init(frame:CGRect, image: UIImage, name: String, amount: Double, due: Date) {
+    convenience init(frame:CGRect, food: Food) {
         self.init(frame: frame)
         setup()
         
-        imageHolder.image = image
-        nameLabel.text = name
-        amountLabel.text = String(amount)
-        dueLabel.text = due.description
+        imageHolder.image = food.image
+        nameLabel.text = food.name
+        amountLabel.text = String(food.amount)
+        dueLabel.text = food.date.description
     }
     
     

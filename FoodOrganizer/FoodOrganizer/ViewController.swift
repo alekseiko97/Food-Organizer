@@ -21,16 +21,20 @@ class Food: NSObject {
         self.date = date
         self.image = image
     }
-
+    
 }
 
-class ViewController: UIViewController, ItemAddedDelegate {
+class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
     
-    // Variables
+    // Global variables and constants
     let screen = UIScreen.main.bounds
+    let cellHeight: CGFloat = 150
+    var startY: CGFloat = 0
+    var x: CGFloat = 15
     var foodArray = [Food]()
     var counter: CGFloat = 0
-
+    var scrollView = UIScrollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,48 +44,50 @@ class ViewController: UIViewController, ItemAddedDelegate {
         addButton.action = #selector(addButtonPressed)
         navigationItem.setRightBarButton(addButton, animated: true)
         
-        let startingHeight = (navigationController?.navigationBar.frame.height)! + 20
-        let x: CGFloat = 15
+        //  Dummy data
+        let apple = Food(name: "Apple", amount: 2, date: Date(), image: #imageLiteral(resourceName: "apple"))
+        let cheddar = Food(name: "Cheddar", amount: 1, date: Date(), image: #imageLiteral(resourceName: "cheddar"))
+        foodArray.append(contentsOf: [apple, cheddar])
         
-        // TODO: Implement filter
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: startingHeight, width: screen.width, height: 50))
+        self.startY = (navigationController?.navigationBar.frame.height)! + 20
+        
+        let searchBar = UISearchBar(frame: CGRect(x: 0, y: startY, width: screen.width, height: 50))
         view.addSubview(searchBar)
         
-        let header = UILabel(frame: CGRect(x: x, y: startingHeight + 70, width: screen.width, height: 30))
+        scrollView.frame = CGRect(x: 0, y: startY + 50, width: screen.width, height: screen.height)
+        scrollView.contentSize = CGSize(width: screen.width, height: CGFloat(foodArray.count) * cellHeight)
+        scrollView.isScrollEnabled = true
+        view.addSubview(scrollView)
+        
+        let header = UILabel(frame: CGRect(x: x, y: 20, width: screen.width, height: 30))
         header.text = "Expiring soon"
         header.font = UIFont(name: "Helvetica-Bold", size: 25)
-        view.addSubview(header)
+        scrollView.addSubview(header)
         
-//        let scrollView = UIScrollView(frame: CGRect(x: 40, y: 30, width: screen.width - 60, height: 80))
-//        scrollView.backgroundColor = UIColor.blue
-//        view.addSubview(scrollView)
-        
-        //  Dummy data
-        let apple = Food(name: "Apple", amount: 2, date: Date(), image: UIImage(named: "apple")!)
-        let cheddar = Food(name: "Cheddar", amount: 1, date: Date(), image: UIImage(named: "cheddar")!)
-        foodArray.append(contentsOf: [apple, cheddar])
-
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-    
+        
         for food in foodArray {
-            let myView = MyView(frame: CGRect(x: x, y: (startingHeight + 110) + 170 * counter, width: screen.width - x * 2, height: 150), image: food.image, name: food.name, amount: food.amount, due: food.date)
+            let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * counter, width: screen.width - x * 2, height: cellHeight)
+            let myView = MyView(frame: frame, food: food)
             myView.tag = Int(counter)
             myView.addGestureRecognizer(longPressGesture)
             myView.addGestureRecognizer(tapGesture)
             counter += 1
-            view.addSubview(myView)
+            scrollView.addSubview(myView)
         }
-        
-        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // TODO: Implement filter
     }
     
     @objc func tapped(_ sender: UIButton) {
-        // TODO -> Go to the next pages with more details
+        // TODO: Go to the next pages with more details
     }
     
     @objc func longPressed(_ sender: UIButton) {
-        // TODO -> Long press pops up a context menu with options (delete, move)
+        // TODO: Long press pops up a context menu with options (delete, move) (something like 3D Touch)
     }
     
     @objc func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -90,11 +96,43 @@ class ViewController: UIViewController, ItemAddedDelegate {
         navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        scrollView.setScrollViewContentSize()
+    }
+    
     func addItem(food: Food) {
-        let new = MyView(frame: CGRect(x: 15, y: (200 + 110) + 170 * 2, width: screen.width - 15 * 2, height: 150), image: food.image, name: food.name, amount: food.amount, due: food.date)
-        view.addSubview(new)
+        foodArray.append(food)
+        let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * CGFloat(foodArray.count - 1), width: screen.width - x * 2, height: cellHeight)
+        let newView = MyView(frame: frame, food: food)
+        scrollView.addSubview(newView)
     }
 
+}
 
+extension UIScrollView {
+    func updateContentView() {
+        
+        contentSize.height = subviews.sorted(by: { $0.frame.maxY < $1.frame.maxY }).last?.frame.maxY ?? contentSize.height
+    }
+    
+    func setScrollViewContentSize() {
+        
+        var height: CGFloat
+        let lastView = self.subviews.last!
+        print(lastView.debugDescription) // should be what you expect
+        
+        let lastViewYPos = lastView.convert(lastView.frame.origin, to: nil).y  // this is absolute positioning, not relative
+        let lastViewHeight = lastView.frame.size.height
+        
+        // sanity check on these
+        print(lastViewYPos)
+        print(lastViewHeight)
+        
+        height = lastViewYPos
+        
+        print("setting scroll height: \(height)")
+        
+        contentSize.height = height
+    }
 }
 
