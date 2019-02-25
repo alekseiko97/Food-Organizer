@@ -26,7 +26,7 @@ class Food: NSObject {
 
 class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
     
-    // Global variables and constants
+    // Global variables
     let screen = UIScreen.main.bounds
     let cellHeight: CGFloat = 150
     var startY: CGFloat = 0
@@ -65,13 +65,13 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         scrollView.addSubview(header)
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
         
         for food in foodArray {
             let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * counter, width: screen.width - x * 2, height: cellHeight)
             let myView = MyView(frame: frame, food: food)
             myView.tag = Int(counter)
-            myView.addGestureRecognizer(longPressGesture)
+            //myView.addGestureRecognizer(longPressGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
             myView.addGestureRecognizer(tapGesture)
             counter += 1
             scrollView.addSubview(myView)
@@ -80,10 +80,18 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // TODO: Implement filter
+        for food in foodArray {
+            if food.name.contains(searchText) {
+                
+            }
+        }
     }
     
-    @objc func tapped(_ sender: UIButton) {
-        // TODO: Go to the next pages with more details
+    @objc func tapped(_ sender: UITapGestureRecognizer) {
+        // TODO: Go to the next page with more details
+        let detailsVC = DetailsViewController()
+        detailsVC.fullImage = foodArray[sender.view!.tag].image
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
     
     @objc func longPressed(_ sender: UIButton) {
@@ -104,6 +112,7 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         foodArray.append(food)
         let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * CGFloat(foodArray.count - 1), width: screen.width - x * 2, height: cellHeight)
         let newView = MyView(frame: frame, food: food)
+        newView.tag = foodArray.count - 1
         scrollView.addSubview(newView)
     }
 
@@ -119,18 +128,18 @@ extension UIScrollView {
         
         var height: CGFloat
         let lastView = self.subviews.last!
-        print(lastView.debugDescription) // should be what you expect
+       // print(lastView.debugDescription) // should be what you expect
         
         let lastViewYPos = lastView.convert(lastView.frame.origin, to: nil).y  // this is absolute positioning, not relative
         let lastViewHeight = lastView.frame.size.height
         
         // sanity check on these
-        print(lastViewYPos)
-        print(lastViewHeight)
+        //print(lastViewYPos)
+        //print(lastViewHeight)
         
         height = lastViewYPos
         
-        print("setting scroll height: \(height)")
+        //print("setting scroll height: \(height)")
         
         contentSize.height = height
     }

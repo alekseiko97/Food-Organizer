@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846922247A3400DFD00B /* DetailsViewController.swift */; };
+		5C17846E22249B1000DFD00B /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */; };
+		5C17847022249B9400DFD00B /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846F22249B9400DFD00B /* MobileNet.mlmodel */; };
+		5C17847222249BC600DFD00B /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */; };
 		A80325772214B332005585B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325762214B332005585B6 /* AppDelegate.swift */; };
 		A80325792214B332005585B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325782214B332005585B6 /* ViewController.swift */; };
 		A803257C2214B332005585B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A803257A2214B332005585B6 /* Main.storyboard */; };
@@ -18,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C17846922247A3400DFD00B /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		5C17846F22249B9400DFD00B /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
+		5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
 		A80325732214B332005585B6 /* FoodOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80325762214B332005585B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A80325782214B332005585B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +52,9 @@
 		A803256A2214B331005585B6 = {
 			isa = PBXGroup;
 			children = (
+				5C17846F22249B9400DFD00B /* MobileNet.mlmodel */,
+				5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */,
+				5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */,
 				A80325752214B332005585B6 /* FoodOrganizer */,
 				A80325742214B332005585B6 /* Products */,
 			);
@@ -63,6 +74,7 @@
 				A80325762214B332005585B6 /* AppDelegate.swift */,
 				A80E3738221527CA008867E3 /* AddViewController.swift */,
 				A80325782214B332005585B6 /* ViewController.swift */,
+				5C17846922247A3400DFD00B /* DetailsViewController.swift */,
 				A80E373422150865008867E3 /* MyVIew.swift */,
 				A80E373222150572008867E3 /* MyView.xib */,
 				A803257A2214B332005585B6 /* Main.storyboard */,
@@ -146,9 +158,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80325792214B332005585B6 /* ViewController.swift in Sources */,
+				5C17846E22249B1000DFD00B /* Inceptionv3.mlmodel in Sources */,
 				A80325772214B332005585B6 /* AppDelegate.swift in Sources */,
+				5C17847222249BC600DFD00B /* SqueezeNet.mlmodel in Sources */,
 				A80E3739221527CA008867E3 /* AddViewController.swift in Sources */,
+				5C17847022249B9400DFD00B /* MobileNet.mlmodel in Sources */,
 				A80E373522150865008867E3 /* MyVIew.swift in Sources */,
+				5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
