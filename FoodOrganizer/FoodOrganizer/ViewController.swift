@@ -11,14 +11,14 @@ import UIKit
 class Food: NSObject {
     
     var name: String!
-    var amount: Double!
-    var date: Date!
+    var amount: Int!
+    var expiry: Int!
     var image: UIImage!
     
-    init(name: String, amount: Double, date: Date, image: UIImage) {
+    init(name: String, amount: Int, expiry: Int, image: UIImage) {
         self.name = name
         self.amount = amount
-        self.date = date
+        self.expiry = expiry
         self.image = image
     }
     
@@ -45,8 +45,8 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         navigationItem.setRightBarButton(addButton, animated: true)
         
         //  Dummy data
-        let apple = Food(name: "Apple", amount: 2, date: Date(), image: #imageLiteral(resourceName: "apple"))
-        let cheddar = Food(name: "Cheddar", amount: 1, date: Date(), image: #imageLiteral(resourceName: "cheddar"))
+        let apple = Food(name: "Apple", amount: 2, expiry: 5, image: #imageLiteral(resourceName: "apple"))
+        let cheddar = Food(name: "Cheddar", amount: 1, expiry: 7, image: #imageLiteral(resourceName: "cheddar"))
         foodArray.append(contentsOf: [apple, cheddar])
         
         self.startY = (navigationController?.navigationBar.frame.height)! + 20
@@ -64,15 +64,14 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         header.font = UIFont(name: "Helvetica-Bold", size: 25)
         scrollView.addSubview(header)
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
+        //let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(_:)))
         
         for food in foodArray {
             let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * counter, width: screen.width - x * 2, height: cellHeight)
             let myView = MyView(frame: frame, food: food)
             myView.tag = Int(counter)
             //myView.addGestureRecognizer(longPressGesture)
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-            myView.addGestureRecognizer(tapGesture)
+            myView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
             counter += 1
             scrollView.addSubview(myView)
         }
@@ -113,6 +112,7 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         let frame = CGRect(x: x, y: 60 + (cellHeight + 20) * CGFloat(foodArray.count - 1), width: screen.width - x * 2, height: cellHeight)
         let newView = MyView(frame: frame, food: food)
         newView.tag = foodArray.count - 1
+        newView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
         scrollView.addSubview(newView)
     }
 

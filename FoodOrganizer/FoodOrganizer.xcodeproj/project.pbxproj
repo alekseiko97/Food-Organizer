@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846922247A3400DFD00B /* DetailsViewController.swift */; };
-		5C17846E22249B1000DFD00B /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */; };
-		5C17847022249B9400DFD00B /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846F22249B9400DFD00B /* MobileNet.mlmodel */; };
-		5C17847222249BC600DFD00B /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */; };
+		5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */; };
+		5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */; };
 		A80325772214B332005585B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325762214B332005585B6 /* AppDelegate.swift */; };
 		A80325792214B332005585B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325782214B332005585B6 /* ViewController.swift */; };
 		A803257C2214B332005585B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A803257A2214B332005585B6 /* Main.storyboard */; };
@@ -23,9 +22,8 @@
 
 /* Begin PBXFileReference section */
 		5C17846922247A3400DFD00B /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
-		5C17846F22249B9400DFD00B /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
-		5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
+		5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+PixelBuffer.swift"; sourceTree = "<group>"; };
 		A80325732214B332005585B6 /* FoodOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80325762214B332005585B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A80325782214B332005585B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,9 +50,6 @@
 		A803256A2214B331005585B6 = {
 			isa = PBXGroup;
 			children = (
-				5C17846F22249B9400DFD00B /* MobileNet.mlmodel */,
-				5C17847122249BC600DFD00B /* SqueezeNet.mlmodel */,
-				5C17846D22249B1000DFD00B /* Inceptionv3.mlmodel */,
 				A80325752214B332005585B6 /* FoodOrganizer */,
 				A80325742214B332005585B6 /* Products */,
 			);
@@ -72,11 +67,13 @@
 			isa = PBXGroup;
 			children = (
 				A80325762214B332005585B6 /* AppDelegate.swift */,
-				A80E3738221527CA008867E3 /* AddViewController.swift */,
 				A80325782214B332005585B6 /* ViewController.swift */,
+				A80E3738221527CA008867E3 /* AddViewController.swift */,
 				5C17846922247A3400DFD00B /* DetailsViewController.swift */,
+				5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */,
 				A80E373422150865008867E3 /* MyVIew.swift */,
 				A80E373222150572008867E3 /* MyView.xib */,
+				5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */,
 				A803257A2214B332005585B6 /* Main.storyboard */,
 				A803257D2214B335005585B6 /* Assets.xcassets */,
 				A803257F2214B335005585B6 /* LaunchScreen.storyboard */,
@@ -158,11 +155,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80325792214B332005585B6 /* ViewController.swift in Sources */,
-				5C17846E22249B1000DFD00B /* Inceptionv3.mlmodel in Sources */,
+				5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */,
 				A80325772214B332005585B6 /* AppDelegate.swift in Sources */,
-				5C17847222249BC600DFD00B /* SqueezeNet.mlmodel in Sources */,
+				5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */,
 				A80E3739221527CA008867E3 /* AddViewController.swift in Sources */,
-				5C17847022249B9400DFD00B /* MobileNet.mlmodel in Sources */,
 				A80E373522150865008867E3 /* MyVIew.swift in Sources */,
 				5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */,
 			);
@@ -312,14 +308,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FoodOrganizer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ca.alekseiko.FoodOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -330,14 +326,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FoodOrganizer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ca.alekseiko.FoodOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

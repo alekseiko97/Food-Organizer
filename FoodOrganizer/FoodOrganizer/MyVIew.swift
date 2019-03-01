@@ -28,11 +28,13 @@ import UIKit
         setup()
         
         imageHolder.image = food.image
+        imageHolder.layer.cornerRadius = 8
+        imageHolder.clipsToBounds = true
         nameLabel.text = food.name
-        amountLabel.text = String(food.amount)
-        dueLabel.text = food.date.description
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        amountLabel.text = "Amount left: " + String(food.amount)
+        dueLabel.text = "Expire in \(food.expiry!) days"
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,7 +54,7 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.layer.borderWidth = 5
-        view.layer.cornerRadius = 2
+        view.layer.cornerRadius = 8
         view.layer.borderColor = UIColor.green.cgColor
         
         addSubview(view)
