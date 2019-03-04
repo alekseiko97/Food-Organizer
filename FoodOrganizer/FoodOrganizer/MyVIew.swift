@@ -33,7 +33,7 @@ import UIKit
         nameLabel.text = food.name
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         amountLabel.text = "Amount left: " + String(food.amount)
-        dueLabel.text = "Expire in \(food.expiry!) days"
+        dueLabel.text = "Expires in \(food.expiry!) days"
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -14,7 +14,6 @@ protocol ItemAddedDelegate: class {
     func addItem(food: Food)
 }
 
-
 class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let screen = UIScreen.main.bounds
