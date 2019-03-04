@@ -114,6 +114,15 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         newView.tag = foodArray.count - 1
         newView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
         scrollView.addSubview(newView)
+        
+//        let myViews = view.subviews.filter{$0 is MyView}
+//        ([MyView])myViews.sorted(by: {$0. < $1.expiry})
+//
+//        for v in myViews {
+//            if view.subviews.contains(v) {
+//                v.removeFromSuperview()
+//            }
+//        }
     }
 
 }

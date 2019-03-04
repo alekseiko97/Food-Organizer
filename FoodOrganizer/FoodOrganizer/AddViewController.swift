@@ -15,7 +15,7 @@ protocol ItemAddedDelegate: class {
 }
 
 
-class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let screen = UIScreen.main.bounds
     let name = String()
@@ -40,12 +40,14 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         view.backgroundColor = .white
         
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(launchCamera(_:))), animated: true)
+        
         let startingY = (navigationController?.navigationBar.frame.height)! + 20
         imageView.frame = CGRect(x: x, y: startingY + 30, width: screen.width - 30, height: 300)
         imageView.image = #imageLiteral(resourceName: "cloud_backup")
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(launchCamera(_:))))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openGallery(_:))))
         view.addSubview(imageView)
         
         // Name
@@ -53,7 +55,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         nameLabel.text = "Product name: "
         view.addSubview(nameLabel)
         
-        nameField.frame = CGRect(x: 140, y: startingY + 361, width: screen.width - 70, height: 20)
+        nameField.frame = CGRect(x: 140, y: startingY + 355, width: screen.width - 150, height: 30)
+        nameField.placeholder = "Enter product name"
+        nameField.delegate = self
+        nameField.borderStyle = .roundedRect
         view.addSubview(nameField)
         
         // Amount
@@ -70,7 +75,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         amountLabel.text = "Enter amount:  " + String(Int(amountStepper.value))
         view.addSubview(amountStepper)
         
-        //Expire
+        // Expire
         expireLabel.frame = CGRect(x: x, y: startingY + 445, width: 150, height: 20)
         view.addSubview(expireLabel)
         
@@ -94,6 +99,11 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         view.addSubview(createButton)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @objc func stepperValueChanged(_ sender: UIStepper) {
         switch sender.tag {
         case 0:
@@ -105,8 +115,21 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 
     
     @objc func launchCamera(_ sender: UITapGestureRecognizer) {
+        
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            return
+        }
+        
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary // change to camera later
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
+    }
+    
+    @objc func openGallery(_ sender: UIBarButtonItem) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         present(imagePicker, animated: true)

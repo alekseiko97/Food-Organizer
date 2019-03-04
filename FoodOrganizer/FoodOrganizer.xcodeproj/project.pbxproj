@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846922247A3400DFD00B /* DetailsViewController.swift */; };
+		5C650CD5222DA61C00F1F3C8 /* Food101.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5C650CD4222DA61C00F1F3C8 /* Food101.mlmodel */; };
 		5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */; };
 		5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */; };
 		A80325772214B332005585B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325762214B332005585B6 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		5C17846922247A3400DFD00B /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5C650CD4222DA61C00F1F3C8 /* Food101.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Food101.mlmodel; sourceTree = "<group>"; };
 		5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+PixelBuffer.swift"; sourceTree = "<group>"; };
 		A80325732214B332005585B6 /* FoodOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 				A80E373422150865008867E3 /* MyVIew.swift */,
 				A80E373222150572008867E3 /* MyView.xib */,
 				5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */,
+				5C650CD4222DA61C00F1F3C8 /* Food101.mlmodel */,
 				A803257A2214B332005585B6 /* Main.storyboard */,
 				A803257D2214B335005585B6 /* Assets.xcassets */,
 				A803257F2214B335005585B6 /* LaunchScreen.storyboard */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A80325792214B332005585B6 /* ViewController.swift in Sources */,
+				5C650CD5222DA61C00F1F3C8 /* Food101.mlmodel in Sources */,
 				5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */,
 				A80325772214B332005585B6 /* AppDelegate.swift in Sources */,
 				5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */,
