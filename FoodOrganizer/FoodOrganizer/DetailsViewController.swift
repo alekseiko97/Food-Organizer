@@ -18,6 +18,7 @@ class BestMatchView: UIView {
         img.layer.masksToBounds = false
         img.layer.cornerRadius = img.frame.width / 2
         img.clipsToBounds = true
+        img.contentMode = .scaleToFill
         return img
     }()
     
@@ -81,7 +82,7 @@ class DetailsViewController: UIViewController {
         view.addSubview(imageView)
         
         textView.frame = CGRect(x: x, y: screen.width + 10, width: screen.width - 20, height: 130)
-        textView.textColor = .darkGray
+        textView.textColor = .black
         textView.font = UIFont.systemFont(ofSize: 15)
         textView.text = desc
         textView.isEditable = false

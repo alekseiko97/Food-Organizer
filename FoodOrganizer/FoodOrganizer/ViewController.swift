@@ -46,6 +46,9 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
     var counter: CGFloat = 0
     var scrollView = UIScrollView()
     
+    let combiners = [[#imageLiteral(resourceName: "red_wine"):"Red Wine"], [#imageLiteral(resourceName: "plums"): "Plums"], [#imageLiteral(resourceName: "almond"): "Almonds"]]
+    let desc = "A popular cheese that originated in the village of Cheddar, England. A firm, cow's milk cheese that ranges in flavor from mild to sharp and in color from a natural white to pumpkin orange. Orange cheddars are colored with annatto, a natural dye. Canadian cheddars are smoother, creamier, and are known for their balance of flavor and sharpness. Cheddars vary in flavor depending on the length of aging and their origin. As cheddar slowly ages, it loses moisture and its texture becomes drier and more crumbly. Sharpness becomes noticeable at 12 months (old cheddar) and 18 months (extra old cheddar). The optimal aging period is 5-6 years; however, for most uses three-year-old cheese is fine and five-year-old cheddar can be saved for special occasions."
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,10 +58,9 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         addButton.action = #selector(addButtonPressed)
         navigationItem.setRightBarButton(addButton, animated: true)
         
-        
         //  Dummy data
         //let apple = Food(name: "Apple", amount: 2, expiry: 5, image: #imageLiteral(resourceName: "apple"))
-        let cheddar = Food(name: "Cheddar", description: "A popular cheese that originated in the village of Cheddar, England. A firm, cow's milk cheese that ranges in flavor from mild to sharp and in color from a natural white to pumpkin orange. Orange cheddars are colored with annatto, a natural dye. Canadian cheddars are smoother, creamier, and are known for their balance of flavor and sharpness. Cheddars vary in flavor depending on the length of aging and their origin. As cheddar slowly ages, it loses moisture and its texture becomes drier and more crumbly. Sharpness becomes noticeable at 12 months (old cheddar) and 18 months (extra old cheddar). The optimal aging period is 5-6 years; however, for most uses three-year-old cheese is fine and five-year-old cheddar can be saved for special occasions.", amount: 1, expiry: 7, image: #imageLiteral(resourceName: "cheddar"), combiners: [[#imageLiteral(resourceName: "red_wine"):"Red Wine"], [#imageLiteral(resourceName: "plums"): "Plums"], [#imageLiteral(resourceName: "almond"): "Almonds"]])
+        let cheddar = Food(name: "Cheddar", description: desc, amount: 1, expiry: 7, image: #imageLiteral(resourceName: "cheddar"), combiners: combiners)
         foodArray.append(cheddar)
         
         self.startY = (navigationController?.navigationBar.frame.height)! + 20
@@ -103,13 +105,23 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         let detailsVC = DetailsViewController()
         let index = sender.view!.tag
         detailsVC.fullImage = foodArray[index].image
-        detailsVC.combiners = foodArray[index].combiners
-        detailsVC.desc = foodArray[index].desc
+        
+        if let combiners = foodArray[index].combiners,
+            let desc = foodArray[index].desc {
+            detailsVC.combiners = combiners
+            detailsVC.desc = desc
+        } else {
+            /* Temporary solution as this data can't be provided by a user.
+             Ideally, it should come from some internet resource
+             */
+            detailsVC.combiners = self.combiners
+            detailsVC.desc = self.desc
+        }
         navigationController?.pushViewController(detailsVC, animated: true)
     }
     
     @objc func longPressed(_ sender: UIButton) {
-        // TODO: Long press pops up a context menu with options (delete, move) (something like 3D Touch)
+        // TODO: Long press activates a context menu with options (delete, move) (like 3D Touch)
     }
     
     @objc func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -139,7 +151,6 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
 //            }
 //        }
     }
-
 }
 
 extension UIScrollView {

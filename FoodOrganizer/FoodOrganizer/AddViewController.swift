@@ -9,6 +9,7 @@
 import UIKit
 import CoreML
 import Vision
+import Photos
 
 protocol ItemAddedDelegate: class {
     func addItem(food: Food)
@@ -98,6 +99,27 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         view.addSubview(createButton)
     }
     
+    func checkPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            print("Access is granted by user")
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                print("status is \(newStatus)")
+                if newStatus == PHAuthorizationStatus.authorized {
+                    print("success")
+                }
+            })
+            print("It is not determined until now")
+        case .restricted:
+            print("User do not have access to photo album.")
+        case .denied:
+            print("User has denied the permission.")
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -114,6 +136,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 
     
     @objc func launchCamera(_ sender: UITapGestureRecognizer) {
+        checkPermission()
         
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             return
@@ -127,6 +150,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     @objc func openGallery(_ sender: UIBarButtonItem) {
+        checkPermission()
+        
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true

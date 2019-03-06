@@ -27,7 +27,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Application needs your permission to take a picture of a food</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Application needs your permission to access the library</string>
+	<string>Application needs your permission to access the gallery</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
