@@ -14,25 +14,34 @@ class Food: NSObject {
     var desc: String?
     var amount: Int!
     var expiry: Int!
+    var expiryDate: Date!
     var image: UIImage!
     var combiners: [[UIImage:String]]?
     
     init(name: String, description: String, amount: Int, expiry: Int, image: UIImage, combiners: [[UIImage:String]]) {
+        super.init()
         self.name = name
         self.desc = description
         self.amount = amount
         self.expiry = expiry
+        self.expiryDate = calculateExpiryDate()
         self.image = image
         self.combiners = combiners
     }
     
     init(name: String, amount: Int, expiry: Int, image: UIImage) {
+        super.init()
         self.name = name
         self.amount = amount
         self.expiry = expiry
+        self.expiryDate = calculateExpiryDate()
         self.image = image
     }
     
+    func calculateExpiryDate() -> Date {
+        let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: expiry, to: Date())
+        return expiryDate!
+    }
 }
 
 class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
@@ -100,8 +109,9 @@ class ViewController: UIViewController, ItemAddedDelegate, UISearchBarDelegate {
         }
     }
     
+
+    
     @objc func tapped(_ sender: UITapGestureRecognizer) {
-        // TODO: Go to the next page with more details
         let detailsVC = DetailsViewController()
         let index = sender.view!.tag
         detailsVC.fullImage = foodArray[index].image
