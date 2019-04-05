@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01241413224959E4008CBE1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01241412224959E3008CBE1A /* GoogleService-Info.plist */; };
+		012EFF2B2251D1E000FE8360 /* FoodClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 012EFF2A2251D1E000FE8360 /* FoodClassifier.mlmodel */; };
 		5C17846A22247A3400DFD00B /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17846922247A3400DFD00B /* DetailsViewController.swift */; };
-		5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */; };
 		5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */; };
 		A80325772214B332005585B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325762214B332005585B6 /* AppDelegate.swift */; };
 		A80325792214B332005585B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80325782214B332005585B6 /* ViewController.swift */; };
@@ -18,11 +19,14 @@
 		A80E373322150572008867E3 /* MyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80E373222150572008867E3 /* MyView.xib */; };
 		A80E373522150865008867E3 /* MyVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E373422150865008867E3 /* MyVIew.swift */; };
 		A80E3739221527CA008867E3 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80E3738221527CA008867E3 /* AddViewController.swift */; };
+		F2889BB9FDE8FF42CA964411 /* Pods_FoodOrganizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C36DCAE6D0408AE525D63C1 /* Pods_FoodOrganizer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01241412224959E3008CBE1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		012EFF2A2251D1E000FE8360 /* FoodClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodClassifier.mlmodel; sourceTree = "<group>"; };
+		3C36DCAE6D0408AE525D63C1 /* Pods_FoodOrganizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodOrganizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C17846922247A3400DFD00B /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+PixelBuffer.swift"; sourceTree = "<group>"; };
 		A80325732214B332005585B6 /* FoodOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80325762214B332005585B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +38,8 @@
 		A80E373222150572008867E3 /* MyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyView.xib; sourceTree = "<group>"; };
 		A80E373422150865008867E3 /* MyVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVIew.swift; sourceTree = "<group>"; };
 		A80E3738221527CA008867E3 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		A884C46B45139D368C8F3840 /* Pods-FoodOrganizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodOrganizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodOrganizer/Pods-FoodOrganizer.release.xcconfig"; sourceTree = "<group>"; };
+		FC751B62BBD142DE201FCB53 /* Pods-FoodOrganizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodOrganizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodOrganizer/Pods-FoodOrganizer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +47,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2889BB9FDE8FF42CA964411 /* Pods_FoodOrganizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		484A610D8A0FC2B53EDDB4FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FC751B62BBD142DE201FCB53 /* Pods-FoodOrganizer.debug.xcconfig */,
+				A884C46B45139D368C8F3840 /* Pods-FoodOrganizer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9FD5BBFADE39F5C8672A72A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C36DCAE6D0408AE525D63C1 /* Pods_FoodOrganizer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A803256A2214B331005585B6 = {
 			isa = PBXGroup;
 			children = (
 				A80325752214B332005585B6 /* FoodOrganizer */,
 				A80325742214B332005585B6 /* Products */,
+				484A610D8A0FC2B53EDDB4FD /* Pods */,
+				9FD5BBFADE39F5C8672A72A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,7 +99,8 @@
 				5CB081E62229CE3D0097C845 /* UIImage+PixelBuffer.swift */,
 				A80E373422150865008867E3 /* MyVIew.swift */,
 				A80E373222150572008867E3 /* MyView.xib */,
-				5CB081E02229CC1D0097C845 /* Inceptionv3.mlmodel */,
+				012EFF2A2251D1E000FE8360 /* FoodClassifier.mlmodel */,
+				01241412224959E3008CBE1A /* GoogleService-Info.plist */,
 				A803257A2214B332005585B6 /* Main.storyboard */,
 				A803257D2214B335005585B6 /* Assets.xcassets */,
 				A803257F2214B335005585B6 /* LaunchScreen.storyboard */,
@@ -89,9 +116,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A80325852214B335005585B6 /* Build configuration list for PBXNativeTarget "FoodOrganizer" */;
 			buildPhases = (
+				80AAF47D2893A8FD834CA042 /* [CP] Check Pods Manifest.lock */,
 				A803256F2214B332005585B6 /* Sources */,
 				A80325702214B332005585B6 /* Frameworks */,
 				A80325712214B332005585B6 /* Resources */,
+				C00C328EBA68238EB92DCF8B /* [CP] Embed Pods Frameworks */,
+				01DE27C9224FECA300C24DF6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -142,6 +172,7 @@
 			files = (
 				A80E373322150572008867E3 /* MyView.xib in Resources */,
 				A80325812214B335005585B6 /* LaunchScreen.storyboard in Resources */,
+				01241413224959E4008CBE1A /* GoogleService-Info.plist in Resources */,
 				A803257E2214B335005585B6 /* Assets.xcassets in Resources */,
 				A803257C2214B332005585B6 /* Main.storyboard in Resources */,
 			);
@@ -149,14 +180,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01DE27C9224FECA300C24DF6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n";
+		};
+		80AAF47D2893A8FD834CA042 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodOrganizer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C00C328EBA68238EB92DCF8B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodOrganizer/Pods-FoodOrganizer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodOrganizer/Pods-FoodOrganizer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A803256F2214B332005585B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A80325792214B332005585B6 /* ViewController.swift in Sources */,
-				5CB081E12229CC1D0097C845 /* Inceptionv3.mlmodel in Sources */,
 				A80325772214B332005585B6 /* AppDelegate.swift in Sources */,
+				012EFF2B2251D1E000FE8360 /* FoodClassifier.mlmodel in Sources */,
 				5CB081E72229CE3D0097C845 /* UIImage+PixelBuffer.swift in Sources */,
 				A80E3739221527CA008867E3 /* AddViewController.swift in Sources */,
 				A80E373522150865008867E3 /* MyVIew.swift in Sources */,
@@ -304,6 +407,7 @@
 		};
 		A80325862214B335005585B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC751B62BBD142DE201FCB53 /* Pods-FoodOrganizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,13 +419,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ca.alekseiko.FoodOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		A80325872214B335005585B6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A884C46B45139D368C8F3840 /* Pods-FoodOrganizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -333,7 +439,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ca.alekseiko.FoodOrganizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

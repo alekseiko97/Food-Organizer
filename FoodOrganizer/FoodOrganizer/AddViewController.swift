@@ -10,10 +10,7 @@ import UIKit
 import CoreML
 import Vision
 import Photos
-
-protocol ItemAddedDelegate: class {
-    func addItem(food: Food)
-}
+import Firebase
 
 class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -22,7 +19,10 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     let amount = Double()
     let date = Date()
     let x: CGFloat = 15
-    weak var delegate: ItemAddedDelegate?
+    let db = Firestore.firestore()
+    
+    var imageFilename: String?
+    var imageData: Data?
     
     // Labels
     let nameLabel = UILabel()
@@ -31,8 +31,8 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     // Inputs
     let nameField = UITextField()
-    let amountStepper = UIStepper()
-    let expireDaysStepper = UIStepper()
+    let amountSlider = UISlider()
+    let expireSlider = UISlider()
     let imageView = UIImageView()
     
     override func viewDidLoad() {
@@ -65,29 +65,25 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         amountLabel.frame = CGRect(x: x, y: startingY + 400, width: 150, height: 20)
         view.addSubview(amountLabel)
         
-        amountStepper.frame = CGRect(x: 190, y: startingY + 395, width: screen.width - 70, height: 20)
-        amountStepper.tag = 0
-        amountStepper.minimumValue = 1
-        amountStepper.maximumValue = 20
-        amountStepper.wraps = true
-        amountStepper.autorepeat = true
-        amountStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
-        amountLabel.text = "Enter amount:  " + String(Int(amountStepper.value))
-        view.addSubview(amountStepper)
+        amountSlider.frame = CGRect(x: 190, y: startingY + 395, width: 150, height: 20)
+        amountSlider.tag = 0
+        amountSlider.minimumValue = 1
+        amountSlider.maximumValue = 20
+        amountSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        amountLabel.text = "Enter amount:  " + String(Int(amountSlider.value))
+        view.addSubview(amountSlider)
         
         // Expire
         expireLabel.frame = CGRect(x: x, y: startingY + 445, width: 150, height: 20)
         view.addSubview(expireLabel)
         
-        expireDaysStepper.frame = CGRect(x: 190, y: startingY + 440, width: 150, height: 20)
-        expireDaysStepper.tag = 1
-        expireDaysStepper.minimumValue = 1
-        expireDaysStepper.maximumValue = 20
-        expireDaysStepper.wraps = true
-        expireDaysStepper.autorepeat = true
-        expireDaysStepper.addTarget(self, action: #selector(stepperValueChanged(_:)), for: .valueChanged)
-        expireLabel.text = "Expire in \(Int(expireDaysStepper.value)) days"
-        view.addSubview(expireDaysStepper)
+        expireSlider.frame = CGRect(x: 190, y: startingY + 440, width: 150, height: 20)
+        expireSlider.tag = 1
+        expireSlider.minimumValue = 1
+        expireSlider.maximumValue = 90
+        expireSlider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        expireLabel.text = "Expire in \(Int(expireSlider.value)) days"
+        view.addSubview(expireSlider)
         
         // Create button
         let createButton = UIButton(frame: CGRect(x: screen.width / 3, y: screen.maxY - 50, width: screen.width / 4, height: 40))
@@ -125,15 +121,15 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         return true
     }
     
-    @objc func stepperValueChanged(_ sender: UIStepper) {
+    @objc func sliderValueChanged(_ sender: UISlider) {
         switch sender.tag {
         case 0:
             amountLabel.text = "Enter amount:  " + String(Int(sender.value))
         default:
-             expireLabel.text = "Expire in \(Int(sender.value)) days"
+            expireLabel.text = "Expire in \(Int(sender.value)) days"
         }
+        
     }
-
     
     @objc func launchCamera(_ sender: UITapGestureRecognizer) {
         checkPermission()
@@ -159,7 +155,7 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         present(imagePicker, animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true)
         
         guard let photo = info[UIImagePickerControllerEditedImage] as? UIImage else {
@@ -167,12 +163,18 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
             return
         }
         
+        imageData = photo.sd_imageData()
+        
+        if let asset = info[UIImagePickerControllerPHAsset] as? PHAsset {
+            imageFilename = PHAssetResource.assetResources(for: asset).first!.originalFilename
+        }
+        
         imageView.image = photo
         processImage(photo)
     }
     
     func processImage(_ image: UIImage) {
-        let model = Inceptionv3()
+        let model = FoodClassifier()
         let size = CGSize(width: 299, height: 299)
         
         guard let buffer = image.resize(to: size)?.pixelBuffer() else {
@@ -182,7 +184,22 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         guard let result = try? model.prediction(image: buffer) else {
             fatalError("Prediction failed!")
         }
-
+        
+        switch result.classLabel {
+        case "Meat":
+            expireSlider.value = 2
+            expireLabel.text = "Expire in \(Int(expireSlider.value)) days"
+        case "Milk":
+             expireSlider.value = 7
+            expireLabel.text = "Expire in \(Int(expireSlider.value)) days"
+        case "Apple":
+            expireSlider.value = 30
+            expireLabel.text = "Expire in \(Int(expireSlider.value)) days"
+        default:
+            expireSlider.value = 1
+            expireLabel.text = "Expire in \(Int(expireSlider.value)) days"
+        }
+        
         //let confidence = result.foodConfidence["\(result.classLabel)"]! * 100.0
         //let converted = String(format: "%.2f", confidence)
         
@@ -190,10 +207,56 @@ class AddViewController: UIViewController, UIImagePickerControllerDelegate, UINa
         nameField.text = "\(result.classLabel)"
     }
     
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func calculateExpiryDate() -> Date {
+        // Calculate expiry date (current date + expiry days)
+        let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: Int(expireSlider.value), to: Date())
+        return expiryDate!
+    }
+    
     @objc func createNewItem(_ sender: UIButton) {
-        let food = Food(name: nameField.text!, amount: Int(amountStepper.value), expiry: Int(expireDaysStepper.value), image: imageView.image!)
-        delegate?.addItem(food: food)
-        navigationController?.popViewController(animated: true)
+        
+        guard let imageData = imageData else {
+            showAlert(message: "Please choose an image")
+            return
+        }
+        
+        guard let imageFilename = imageFilename else {
+            showAlert(message: "Image filename is not defined")
+            return
+        }
+        
+        guard let name = nameField.text, !name.isEmpty else {
+            showAlert(message: "Please give a proper name to the food")
+            return
+        }
+        
+        Storage.storage().reference().child(imageFilename).putData(imageData, metadata: nil) { (nil, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print("Image successfully written")
+            }
+        }
+        
+        db.collection("food").document().setData([
+            "name": name,
+            "amount": Int(amountSlider.value),
+            "expiresIn": Int(expireSlider.value),
+            "expiryDate": Timestamp(date: calculateExpiryDate()),
+            "image": imageFilename,
+        ]) { (error) in
+            if let error = error {
+                print(error)
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
 }
@@ -203,5 +266,3 @@ extension ViewController: UIImagePickerControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-
-
