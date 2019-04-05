@@ -1,1 +1,1 @@
-# FoodOrganizer
+# Food Organizer App
